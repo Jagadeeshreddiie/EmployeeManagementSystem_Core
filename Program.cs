@@ -13,6 +13,7 @@
 //    }
 //}
 
+// Commented above approach as it is before .NET Core 6.x version
 
 var builder = WebApplication.CreateBuilder(args);
 
