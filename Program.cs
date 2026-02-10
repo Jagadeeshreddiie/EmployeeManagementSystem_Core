@@ -19,8 +19,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app=builder.Build();
 
+// IConfiguration is the builtin service to read the Configuration.
+IConfiguration config = app.Configuration;
+
+// getting the Processing server name  eg: IIS - Inprocess, Kestrel - OutOfProcess
 app.MapGet("/", () => System.Diagnostics.Process.GetCurrentProcess().ProcessName);
 
-app.MapGet("user", () => "User Endpoint");
+app.MapGet("/user", () => "User Endpoint");
+
+// Configuration
+// AppSettings -> AppSettings.development -> User Secrets -> Env Variables -> Cmd line Args.
+// cmd ex: dotnet run MyKey="Value from CMD"
+
+app.MapGet("/Key", () => config["MyKey"]);
 
 app.Run();
