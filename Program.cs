@@ -39,24 +39,32 @@ IConfiguration config = app.Configuration;
 */
 
 // Minimal Universal API with context delegate.
-app.Use(async (context,next) => {
-    // Use with next parameter will pass the control to next middleware, otherwise it will be terminated.
+//app.Use(async (context,next) => {
+//    // Use with next parameter will pass the control to next middleware, otherwise it will be terminated.
 
-    // logger
+//    // logger
 
-    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+//    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
 
-    logger.LogInformation("MW1 : Request Processing");
+//    logger.LogInformation("MW1 : Request Processing");
 
-    await context.Response.WriteAsync(context.Request.Path + "  " + config["MyKey"]);
+//    await context.Response.WriteAsync(context.Request.Path + "  " + config["MyKey"]);
 
-    await next();
+//    await next();
 
-    logger.LogInformation("MW1 : Response Processing");
+//    logger.LogInformation("MW1 : Response Processing");
 
+//});
+
+//app.Run( async (context) => { await context.Response.WriteAsync(context.Request.Method +"  "+ config["MyKey"]); });
+
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
+app.Run( async (context) => {
+    await context.Response.WriteAsync("Hello World!");
 });
-
-app.Run( async (context) => { await context.Response.WriteAsync(context.Request.Method +"  "+ config["MyKey"]); });
 
 
 app.Run();
