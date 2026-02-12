@@ -72,15 +72,32 @@ IConfiguration config = app.Configuration;
 //app.UseDefaultFiles(options);
 //app.UseStaticFiles();
 
-FileServerOptions options = new FileServerOptions();
-options.DefaultFilesOptions.DefaultFileNames.Clear();
-options.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
 
-app.UseFileServer(options);
+// Commenting for testing the DeveloperException Middleware.
+
+//FileServerOptions options = new FileServerOptions();
+//options.DefaultFilesOptions.DefaultFileNames.Clear();
+//options.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+
+if (app.Environment.IsDevelopment())
+{
+    DeveloperExceptionPageOptions developerOptions = new DeveloperExceptionPageOptions
+    {
+        SourceCodeLineCount = 10
+    };
+
+    app.UseDeveloperExceptionPage(developerOptions);
+}
+
+
+app.UseFileServer();
 
 app.Run( async (context) => {
+    //throw new Exception("Exception from the Running fgvdfgdf");
     await context.Response.WriteAsync("Hello World!");
 });
+
+
 
 
 app.Run();
