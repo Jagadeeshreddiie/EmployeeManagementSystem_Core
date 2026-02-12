@@ -16,6 +16,8 @@
 
 // Commented above approach as it is before .NET Core 6.x version
 
+using System.Net.Sockets;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var app=builder.Build();
@@ -59,8 +61,22 @@ IConfiguration config = app.Configuration;
 //app.Run( async (context) => { await context.Response.WriteAsync(context.Request.Method +"  "+ config["MyKey"]); });
 
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
+// adding the DefaultFileOptions to render custom html as default page.
+
+//DefaultFilesOptions options = new DefaultFilesOptions();
+//options.DefaultFileNames.Clear();
+//options.DefaultFileNames.Add("Foo.html");
+
+// adding FileServerOptions for combined usage of UseDirectoryBrowser middleware, by replacing both UseDefaultFiles, UseStaticFiles Middlewares
+
+//app.UseDefaultFiles(options);
+//app.UseStaticFiles();
+
+FileServerOptions options = new FileServerOptions();
+options.DefaultFilesOptions.DefaultFileNames.Clear();
+options.DefaultFilesOptions.DefaultFileNames.Add("foo.html");
+
+app.UseFileServer(options);
 
 app.Run( async (context) => {
     await context.Response.WriteAsync("Hello World!");
