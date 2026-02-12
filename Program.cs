@@ -81,23 +81,23 @@ IConfiguration config = app.Configuration;
 
 if (app.Environment.IsDevelopment())
 {
-    DeveloperExceptionPageOptions developerOptions = new DeveloperExceptionPageOptions
-    {
-        SourceCodeLineCount = 10
-    };
+    //DeveloperExceptionPageOptions developerOptions = new DeveloperExceptionPageOptions
+    //{
+    //    SourceCodeLineCount = 10
+    //};
 
-    app.UseDeveloperExceptionPage(developerOptions);
+    app.UseDeveloperExceptionPage();
 }
 
 
 app.UseFileServer();
 
 app.Run( async (context) => {
-    //throw new Exception("Exception from the Running fgvdfgdf");
-    await context.Response.WriteAsync("Hello World!");
+    throw new Exception("Exception from the Running fgvdfgdf");
+    await context.Response.WriteAsync("Hello World!  "+ app.Environment.EnvironmentName.ToString());                                                                      
 });
 
 
-
+// Development  -- Staging ( replica of Production with minified versions to test with Client services)  -- Production
 
 app.Run();
