@@ -16,9 +16,16 @@
 
 // Commented above approach as it is before .NET Core 6.x version
 
-using System.Net.Sockets;
+using Microsoft.AspNetCore.Mvc;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+// binding the controllers.
+
+builder.Services.AddMvc();
+builder.Services.AddControllersWithViews();
+
 
 var app=builder.Build();
 
@@ -90,14 +97,30 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseFileServer();
+//app.UseFileServer();
 
-app.Run( async (context) => {
-    throw new Exception("Exception from the Running fgvdfgdf");
-    await context.Response.WriteAsync("Hello World!  "+ app.Environment.EnvironmentName.ToString());                                                                      
-});
+// adding routing
+
+app.UseStaticFiles();
+app.UseRouting();
+app.MapControllers();
+
+// adding the default controller mapping
+
+// Convetional routing where it is mandatory
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{Controller=User}/{Action=Index}/{id?}"
+);
+
+//app.Run( async (context) => {
+//    throw new Exception("Exception from the Running fgvdfgdf");
+//    await context.Response.WriteAsync("Hello World!  "+ app.Environment.EnvironmentName.ToString());                                                                      
+//});
 
 
 // Development  -- Staging ( replica of Production with minified versions to test with Client services)  -- Production
 
 app.Run();
+ 
