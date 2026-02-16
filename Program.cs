@@ -16,6 +16,7 @@
 
 // Commented above approach as it is before .NET Core 6.x version
 
+using EmployeeManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -24,8 +25,19 @@ var builder = WebApplication.CreateBuilder(args);
 // binding the controllers.
 
 builder.Services.AddMvc();
+// AddMvc() internally calls AddMvcCore(), no need to add that again, better to use AddMvc();
+
+
 builder.Services.AddControllersWithViews();
 
+// Adding the Dependency Injection into the Dependency Container
+
+builder.Services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
+//builder.Services.AddKeyedSingleton<IEmployeeRepository, EmployeeRepository>("KeyA");  -- Key Based Injection
+
+// -- Other ways to add Dependency Injection into the container.
+//builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+//builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app=builder.Build();
 
