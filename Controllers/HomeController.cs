@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement.Repository;
 using EmployeeManagement.Models;
+using EmployeeManagement.ViewModels;
 
 namespace EmployeeManagement.Controllers
 {
@@ -16,10 +17,21 @@ namespace EmployeeManagement.Controllers
             _rep = rep; 
         }
         //[Route("/")]
-        public JsonResult Index()
+        public ViewResult Index()
         {
-            Employee data = _rep.GetEmployee(1);
-            return Json(data);
+            var details = _rep.GetAllEmployee();
+            return View(details);
+        }
+
+        public ViewResult Details (int id)
+        {
+            HomeDetailsViewModel details = new HomeDetailsViewModel()
+            {
+                employee=_rep.GetEmployee(id),
+                Title="Employee Details"
+            };
+            
+            return View(details);
         }
     }
 }

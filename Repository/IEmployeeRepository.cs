@@ -6,5 +6,6 @@ namespace EmployeeManagement.Repository
     public interface IEmployeeRepository
     {
         Employee GetEmployee(int id);
+        List<Employee> GetAllEmployee();
     }
 }

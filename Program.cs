@@ -123,7 +123,7 @@ app.MapControllers();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{Controller=User}/{Action=Index}/{id?}"
+    pattern: "{Controller=Home}/{Action=Index}/{id?}"
 );
 
 //app.Run( async (context) => {
