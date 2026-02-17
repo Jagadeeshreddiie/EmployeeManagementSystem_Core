@@ -119,12 +119,15 @@ app.MapControllers();
 
 // adding the default controller mapping
 
-// Convetional routing where it is mandatory
+// Convetional routing where it is mandatory  
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{Controller=Home}/{Action=Index}/{id?}"
 );
+
+// Attribute Routing => [Route("Home")] in controllers
+
 
 //app.Run( async (context) => {
 //    throw new Exception("Exception from the Running fgvdfgdf");

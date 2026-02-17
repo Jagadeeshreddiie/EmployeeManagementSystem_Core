@@ -17,7 +17,7 @@ namespace EmployeeManagement.Controllers
             _rep = rep; 
         }
         //[Route("/")]
-        public ViewResult Index()
+        public ActionResult Index()
         {
             var details = _rep.GetAllEmployee();
             return View(details);
