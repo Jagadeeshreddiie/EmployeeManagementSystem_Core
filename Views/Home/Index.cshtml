@@ -4,9 +4,11 @@
     ViewBag.Title = "Employee List";
 }
 
+
+
 <div><h1>Employee List</h1></div>
 
-<table border="1" cellpadding="4">
+<table class="table mt-2">
     <thead>
         <tr>
             <td>Name</td>
@@ -15,20 +17,20 @@
         </tr>
     </thead>
     <tbody>
-        
-            @foreach (var item in Model)
-            {
-            <tr >
+
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                    <a href="@Url.Action("Details","Home",new { @item.Id })">
-                    @item.Name
+                    <a href="@Url.Action("Details", "Home", new { @item.Id })">
+                        @item.Name
                     </a>
                 </td>
                 <td>@item.Email</td>
                 <td>@item.Department</td>
             </tr>
-            }
-       
+        }
+
     </tbody>
 </table>
 @section Scripts {

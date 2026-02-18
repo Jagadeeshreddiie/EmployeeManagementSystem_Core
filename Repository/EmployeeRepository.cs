@@ -15,7 +15,7 @@ namespace EmployeeManagement.Repository
                 Id = 1,
                 Name = "Bhogesh",
                 Department = "IT",
-                Email = "bhogesh@inubesolutions.com"
+                Email = "vura.bhogesh@inubesolutions.com"
             },
             new Employee()
             {
@@ -29,7 +29,7 @@ namespace EmployeeManagement.Repository
                 Id = 3,
                 Name = "Kotesh",
                 Department = "QA",
-                Email = "kotesh@inubesolutions.com"
+                Email = "manthena.saimani@inubesolutions.com"
             }
         };
         }

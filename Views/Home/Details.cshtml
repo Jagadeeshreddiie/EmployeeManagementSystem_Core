@@ -4,26 +4,31 @@
     ViewBag.Title = Model.Title;
 }
 
-<div style="text-align:left;">
-    <div> 
-        <h2>Details of the Employee</h2>
+<div class="card w-25 m-3 text-center">
+    <div class="card-header">
+        <h4>Details of the Employee</h4>
     </div>
-    <div style="display:block">
-        <p>
-            <strong>Name : </strong>
-            @Model.employee.Name
-        </p>
-    </div>
-    <div style="display:block">
-        <p>
-            <strong>Email : </strong>
-            @Model.employee.Email
-        </p>
-    </div>
-    <div style="display:block">
-        <p>
-            <strong>Department : </strong>
-            @Model.employee.Department
-        </p>
+    <div class="card-body">
+        <div class="card-group">
+            <p>
+                <strong>Name : </strong>
+            </p><p>
+                @Model.employee.Name
+            </p>
+        </div>
+        <div class="card-group">
+            <p>
+                <strong>Email : </strong>
+            </p><p>
+                @Model.employee.Email
+            </p>
+        </div>
+        <div class="card-group">
+            <p>
+                <strong>Department : </strong>
+            </p><p>
+                @Model.employee.Department
+            </p>
+        </div>
     </div>
 </div>
